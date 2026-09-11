@@ -1,0 +1,17 @@
+{#
+  partials/related-posts.njk
+  우측 사이드바에 표시되는 연관 글 추천 영역 (서버 사이드 정적 데이터 활용 + 클라이언트 필터링)
+#}
+<div class="sidebar-section" id="relatedPostsSection" style="display: none;">
+  <h3 class="sidebar-section-title">연관 글</h3>
+  <ul class="sidebar-list sidebar-list--posts" id="relatedPostsList">
+    <!-- JS가 <li><a...>...</a></li> 삽입 -->
+  </ul>
+</div>
+
+<!-- 빌드 시점에 찾은 연관 글 데이터를 클라이언트에 전달 (백링크 중복 제거용) -->
+{% if related and related | length > 0 %}
+<script>
+  window.__GEULTE_RELATED__ = {{ related | tojson | safe }};
+</script>
+{% endif %}

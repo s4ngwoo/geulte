@@ -1,0 +1,13 @@
+{#
+  partials/backlinks.njk
+  우측 사이드바에 표시되는 백링크 영역 (클라이언트에서 API로 동적 로드)
+#}
+<div class="sidebar-backlinks" id="backlinksContainer">
+  <h3>이 글을 언급한 글</h3>
+  <!-- 로딩 중 또는 데이터 없을 때 표시될 영역 -->
+  <div id="backlinksLoading" class="backlink-empty">로딩 중...</div>
+  
+  <ul class="backlink-list" id="backlinksList" style="display: none;">
+    <!-- JS가 <li><a>...</a></li> 삽입 -->
+  </ul>
+</div>

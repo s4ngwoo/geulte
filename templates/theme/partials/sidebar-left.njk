@@ -1,0 +1,69 @@
+<div class="sidebar-inner">
+  <!-- 사이트 로고/제목 -->
+  <div class="sidebar-header">
+    <a href="{{ localePrefix }}/" class="site-title">{{ site.title }}</a>
+    {% if site.description %}
+    <p class="site-desc">{{ site.description }}</p>
+    {% endif %}
+  </div>
+
+  <!-- 검색 -->
+  <div class="sidebar-search">
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="검색..."
+      autocomplete="off"
+      aria-label="글 검색"
+    >
+    <div id="searchResults" class="search-results" role="listbox" aria-label="검색 결과"></div>
+  </div>
+
+  <!-- 카테고리 (접기/펼치기 가능) -->
+  {% if sidebar.categories | length > 0 %}
+  <details class="sidebar-section sidebar-collapse" id="collapseCategories" open>
+    <summary class="sidebar-section-title sidebar-collapse-summary" aria-label="카테고리 접기/펼치기">
+      <span>{{ taxonomy.category.label if taxonomy.category else t('nav.categories') }}</span>
+      <span class="collapse-arrow">▾</span>
+    </summary>
+    <ul class="sidebar-list">
+      {% for cat in sidebar.categories %}
+      <li>
+        <a href="{{ cat.slug }}" class="sidebar-link {% if currentPath == cat.slug %}active{% endif %}">
+          {{ cat.name }}
+          <span class="badge">{{ cat.count }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+
+  <!-- 시리즈 (접기/펼치기 가능) -->
+  {% if sidebar.series | length > 0 %}
+  <details class="sidebar-section sidebar-collapse" id="collapseSeries" open>
+    <summary class="sidebar-section-title sidebar-collapse-summary" aria-label="시리즈 접기/펼치기">
+      <span>{{ t('nav.series') }}</span>
+      <span class="collapse-arrow">▾</span>
+    </summary>
+    <ul class="sidebar-list">
+      {% for s in sidebar.series %}
+      <li>
+        <a href="{{ localePrefix }}/series/{{ s | urlencode }}" class="sidebar-link">{{ s }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </details>
+  {% endif %}
+
+  <!-- 태그 클라우드 (사이드바 배치 시, 접기/펼치기 가능) -->
+  {% if theme.tagCloud.position != 'footer' %}
+  <details class="sidebar-section sidebar-collapse" id="collapseTags" open>
+    <summary class="sidebar-section-title sidebar-collapse-summary" aria-label="태그 접기/펼치기">
+      <span>{{ t('nav.tags') }}</span>
+      <span class="collapse-arrow">▾</span>
+    </summary>
+    {% include "partials/tag-cloud.njk" %}
+  </details>
+  {% endif %}
+</div>

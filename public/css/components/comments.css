@@ -1,0 +1,19 @@
+/* ─── 댓글 섹션 (comments.njk) ───────────────────────────────── */
+.comments-section {
+  margin-top: var(--space-12);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+.comments-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+}
+.giscus-wrapper {
+  min-height: 250px;
+  width: 100%;
+}

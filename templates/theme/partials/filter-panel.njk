@@ -1,0 +1,58 @@
+{# partials/filter-panel.njk
+   조합 필터 패널 — taxonomy별 체크박스 목록 + 필터 초기화
+   requires: filterOptions (JS가 Supabase에서 로드해 채워줌)
+#}
+<div class="filter-panel" id="filterPanel" aria-label="필터">
+  <div class="filter-header">
+    <h2 class="filter-title">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+        <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.553.894l-4 2A1 1 0 016 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd"/>
+      </svg>
+      필터
+    </h2>
+    <div class="filter-actions">
+      <span class="filter-badge" id="filterBadge" aria-live="polite" style="display:none">0</span>
+      <button class="filter-reset" id="filterResetBtn" type="button" aria-label="필터 초기화">
+        초기화
+      </button>
+    </div>
+  </div>
+
+  <div class="filter-groups" id="filterGroups">
+    {# 카테고리 #}
+    <div class="filter-group" id="filterGroupCategory">
+      <div class="filter-group-header">{{ t('nav.categories') }}</div>
+      <ul class="filter-option-list" id="filterGroupCategoryList" role="group" aria-label="카테고리 필터"></ul>
+    </div>
+
+    {# 시리즈 #}
+    <div class="filter-group" id="filterGroupSeries">
+      <div class="filter-group-header">{{ t('nav.series') }}</div>
+      <ul class="filter-option-list" id="filterGroupSeriesList" role="group" aria-label="시리즈 필터"></ul>
+    </div>
+
+    {# 태그 #}
+    <div class="filter-group" id="filterGroupTags">
+      <div class="filter-group-header">{{ t('nav.tags') }}</div>
+      <ul class="filter-option-list" id="filterGroupTagsList" role="group" aria-label="태그 필터"></ul>
+    </div>
+
+    {# 토픽 #}
+    <div class="filter-group" id="filterGroupTopics">
+      <div class="filter-group-header">{{ t('nav.topics') }}</div>
+      <ul class="filter-option-list" id="filterGroupTopicsList" role="group" aria-label="주제 필터"></ul>
+    </div>
+
+    {# 키워드 #}
+    <div class="filter-group" id="filterGroupKeywords">
+      <div class="filter-group-header">{{ t('nav.keywords') }}</div>
+      <ul class="filter-option-list" id="filterGroupKeywordsList" role="group" aria-label="키워드 필터"></ul>
+    </div>
+  </div>
+
+  {# 필터 결과 카운트 #}
+  <p class="filter-result-count" id="filterResultCount" aria-live="polite"></p>
+</div>
+
+{# 필터 결과 렌더링 영역 #}
+<div id="filterResults" class="filter-results-area"></div>

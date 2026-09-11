@@ -1,0 +1,14 @@
+{#
+  components/link-popover.njk
+  클라이언트 사이드에서 백링크 팝오버를 띄우기 위한 템플릿 영역
+#}
+<div id="linkPopover" class="link-popover" aria-hidden="true" role="tooltip">
+  <div class="popover-content">
+    <div id="popoverLoading" class="popover-loading">로딩 중...</div>
+    <div id="popoverData" style="display: none;">
+      <div class="popover-meta" id="popoverMeta"></div>
+      <h4 class="popover-title" id="popoverTitle"></h4>
+      <div class="popover-excerpt" id="popoverExcerpt"></div>
+    </div>
+  </div>
+</div>

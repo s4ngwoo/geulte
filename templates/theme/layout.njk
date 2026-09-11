@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="{{ theme.darkMode | default(true) and 'dark' or 'light' }}">
+<head>
+  {% include "partials/head.njk" %}
+</head>
+<body>
+  <!-- 모바일 오버레이 -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- 사이트 헤더 -->
+  {% include "partials/header.njk" %}
+
+  <div class="app-layout">
+    <!-- 좌측 사이드바 -->
+    <aside class="sidebar sidebar-left" id="sidebarLeft" aria-label="사이트 네비게이션">
+      {% include "partials/sidebar-left.njk" %}
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content" id="mainContent">
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- 우측 사이드바 (데스크탑 상시 노출: 목차, 최신글/인기글, 백링크, 연관글) -->
+    <aside class="sidebar sidebar-right" id="sidebarRight" aria-label="보조 네비게이션 및 목차">
+      {% include "partials/sidebar-right.njk" %}
+    </aside>
+  </div>
+
+  <!-- 푸터 (상시 노출) -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-footer-inner">
+      {% if theme.tagCloud.position == 'footer' %}
+      <div class="site-footer-tagcloud">
+        <h4 class="footer-section-title">태그 클라우드</h4>
+        {% include "partials/tag-cloud.njk" %}
+      </div>
+      {% endif %}
+      <div class="site-footer-bottom">
+        <div class="site-footer-brand">
+          <a href="{{ localePrefix }}/" class="footer-brand-title">{{ site.title }}</a>
+          {% if site.description %}
+          <p class="footer-brand-desc">{{ site.description }}</p>
+          {% endif %}
+          {% if site.author %}
+          <p class="footer-brand-author">by {{ site.author.name if site.author.name else site.author }}</p>
+          {% endif %}
+        </div>
+        {% include "partials/social-links.njk" %}
+        <p class="site-footer-copy">© {{ site.title }}. Powered by <strong>Geulte</strong>.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 백링크 팝오버 -->
+  {% include "components/link-popover.njk" %}
+
+  <script src="/scripts/theme-toggle.js" defer></script>
+  <script src="/scripts/toc-scroll.js" defer></script>
+  <script src="/scripts/lazy-posts.js" defer></script>
+  <script src="/scripts/mermaid-init.js" defer></script>
+  <script src="/scripts/code-copy.js" defer></script>
+  <script src="/_geulte/js/main.js" defer></script>
+  {% if supabaseUrl %}
+  <script>
+    window.__GEULTE_CONFIG__ = {
+      supabaseUrl: {{ supabaseUrl | tojson | safe }},
+      supabaseKey: {{ supabaseKey | tojson | safe }},
+      slug: {{ (post.slug if post else '') | tojson | safe }}
+    };
+  </script>
+  <script src="/_geulte/js/backlinks.js" defer></script>
+  {% endif %}
+  <script src="https://cdn.jsdelivr.net/npm/minisearch@6.3.0/dist/umd/index.min.js"></script>
+  <script src="/_geulte/js/search.js" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

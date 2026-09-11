@@ -1,0 +1,13 @@
+{
+  "name": "my-geulte-blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "geulte dev",
+    "build": "geulte build",
+    "sync": "geulte sync"
+  },
+  "dependencies": {
+    "geulte": "^0.1.0"
+  }
+}

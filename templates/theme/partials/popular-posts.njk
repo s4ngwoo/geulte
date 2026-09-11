@@ -1,0 +1,36 @@
+{#
+  partials/popular-posts.njk — 인기글 위젯
+  백링크 수(언급 횟수) 또는 조회수 기준 정렬된 {{ t('sidebar.popular_posts') }} 목록
+#}
+{% if sidebar.popularPosts and sidebar.popularPosts | length > 0 %}
+<div class="posts-widget-content" id="widgetPopularPosts" role="tabpanel" aria-labelledby="tabPopular" hidden>
+  <ul class="posts-widget-list">
+    {% for post in sidebar.popularPosts %}
+    <li class="posts-widget-item">
+      <a href="{{ localePrefix }}/posts/{{ post.slug }}" class="posts-widget-link {% if currentPath == '/posts/' + post.slug %}active{% endif %}">
+        <div class="posts-widget-title-row">
+          <span class="posts-widget-title">{{ post.title }}</span>
+          <span class="posts-widget-metric" title="{% if theme.popularPosts.metric == 'views' %}조회수{% else %}언급(백링크) 수{% endif %}">
+            {% if theme.popularPosts.metric == 'views' %}
+              👁 {{ post.view_count | default(0) }}
+            {% else %}
+              🔗 {{ post.backlink_count | default(0) }}
+            {% endif %}
+          </span>
+        </div>
+        <div class="posts-widget-meta">
+          <time class="posts-widget-date" datetime="{{ post.date | isodate }}">
+            {{ post.date | dateformat }}
+          </time>
+          {% if post.category %}
+          <span class="posts-widget-cat">{{ post.category }}</span>
+          {% endif %}
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% else %}
+<p class="posts-widget-empty">{{ t('sidebar.popular_posts') }} 데이터가 없습니다.</p>
+{% endif %}

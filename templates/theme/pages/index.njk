@@ -1,0 +1,79 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="page-home">
+  <header class="page-header">
+    <h1 class="page-title">{{ site.title }}</h1>
+    {% if site.description %}
+    <p class="page-subtitle">{{ site.description }}</p>
+    {% endif %}
+  </header>
+
+  <section class="post-list-section">
+    <h2 class="section-title">{{ t('sidebar.recent_posts') }}</h2>
+
+    {% if posts | length == 0 %}
+    <p class="empty-state">아직 발행된 글이 없습니다.</p>
+    {% else %}
+    <ul class="post-list" id="postList">
+      {% for post in posts.slice(0, 10) %}
+      <li class="post-card">
+        <article>
+          <div class="post-card-meta">
+            {% if post.category %}
+            <a href="{{ localePrefix }}/categories/{{ post.category | urlencode }}" class="post-category">{{ post.category }}</a>
+            {% endif %}
+            <time datetime="{{ post.date | isodate }}" class="post-date">{{ post.date | dateformat }}</time>
+            {% if post.type %}
+            <span class="post-type post-type--{{ post.type }}">{{ post.type }}</span>
+            {% endif %}
+          </div>
+          <h2 class="post-card-title">
+            <a href="{{ localePrefix }}/posts/{{ post.slug }}">{{ post.title }}</a>
+          </h2>
+          {% if post.excerpt %}
+          <p class="post-card-excerpt">{{ post.excerpt }}</p>
+          {% endif %}
+          {% if post.tags | length > 0 %}
+          <div class="post-tags">
+            {% for tag in post.tags %}
+            <a href="{{ localePrefix }}/tags/{{ tag | urlencode }}" class="tag">#{{ tag }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if post.series %}
+          <div class="post-series-badge">
+            <a href="{{ localePrefix }}/series/{{ post.series | urlencode }}">📚 {{ post.series }}</a>
+          </div>
+          {% endif %}
+        </article>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% if posts | length > 10 %}
+    <div
+      id="postsLazySentinel"
+      class="posts-lazy-sentinel"
+      data-total="{{ posts | length }}"
+      data-initial="10"
+      data-page-size="10"
+      aria-live="polite"
+    >
+      <div class="lazy-loading-indicator" id="lazyLoadingIndicator" style="display: none;">
+        <span class="loading-spinner"></span>
+        <span class="loading-text">추가 글을 불러오는 중...</span>
+      </div>
+      <button type="button" class="lazy-load-more-btn" id="lazyLoadMoreBtn" style="display: none;">
+        더 많은 글 불러오기
+      </button>
+      <div class="lazy-end-message" id="lazyEndMessage" style="display: none;">
+        <p class="lazy-end-text">모든 글을 불러왔습니다 (총 {{ posts | length }}개).</p>
+      </div>
+    </div>
+    {% endif %}
+
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

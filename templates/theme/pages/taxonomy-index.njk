@@ -1,0 +1,25 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="page-taxonomy-index">
+  <header class="page-header">
+    <h1 class="page-title">{{ listTitle }}</h1>
+    <p class="post-count">{{ items | length }}개의 {{ listTitle }}</p>
+  </header>
+
+  {% if items | length == 0 %}
+  <p class="empty-state">항목이 없습니다.</p>
+  {% else %}
+  <ul class="taxonomy-index-list">
+    {% for item in items %}
+    <li class="taxonomy-index-item">
+      <a href="{{ item.slug }}" class="taxonomy-index-link">
+        <span class="taxonomy-name">{{ item.name }}</span>
+        <span class="taxonomy-count badge">{{ item.count }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>
+{% endblock %}

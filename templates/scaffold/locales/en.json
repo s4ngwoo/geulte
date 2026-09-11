@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "posts": "Posts",
+    "tags": "Tags",
+    "series": "Series",
+    "topics": "Topics",
+    "keywords": "Keywords",
+    "categories": "Categories"
+  },
+  "sidebar": {
+    "recent_posts": "Recent Posts",
+    "popular_posts": "Popular Posts",
+    "toc": "Table of Contents",
+    "backlinks": "Linked to this post",
+    "related": "Related Posts",
+    "no_backlinks": "No posts linked here yet."
+  },
+  "post": {
+    "series_prev": "Previous",
+    "series_next": "Next"
+  },
+  "search": {
+    "placeholder": "Search (Ctrl+K)...",
+    "no_results": "No results found.",
+    "count": "Found {count} results."
+  }
+}

@@ -1,0 +1,64 @@
+/* ─── Wikilinks ──────────────────────────────────────────────── */
+.post-body a.wikilink {
+  color: var(--color-wikilink);
+  border-bottom: 1px dashed var(--color-wikilink);
+  padding-bottom: 1px;
+}
+.post-body a.wikilink.broken {
+  color: var(--color-wikilink-broken);
+  border-bottom-color: var(--color-wikilink-broken);
+  cursor: not-allowed;
+}
+.post-body a.wikilink.broken:hover { text-decoration: none; }
+
+/* ─── Callouts ───────────────────────────────────────────────── */
+.callout {
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin: var(--space-6) 0;
+  border-left: 4px solid;
+}
+.callout-note    { background: var(--color-callout-note);    border-color: var(--color-callout-note-border); }
+.callout-warning { background: var(--color-callout-warning); border-color: var(--color-callout-warning-border); }
+.callout-tip     { background: var(--color-callout-tip);     border-color: var(--color-callout-tip-border); }
+.callout-danger  { background: var(--color-callout-danger);  border-color: var(--color-callout-danger-border); }
+.callout-info    { background: var(--color-callout-note);    border-color: var(--color-callout-note-border); }
+.callout-success { background: var(--color-callout-tip);     border-color: var(--color-callout-tip-border); }
+.callout-important { background: var(--color-callout-warning); border-color: var(--color-callout-warning-border); }
+.callout-caution   { background: var(--color-callout-danger);  border-color: var(--color-callout-danger-border); }
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-3);
+}
+.callout-body { font-size: var(--font-size-sm); line-height: 1.7; }
+.callout-body p:last-child { margin-bottom: 0; }
+
+/* ─── 각주 ───────────────────────────────────────────────────── */
+.post-body .footnotes {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+}
+.post-body .footnotes ol { padding-left: var(--space-6); }
+
+/* ─── KaTeX ──────────────────────────────────────────────────── */
+.katex-display { overflow-x: auto; margin: var(--space-6) 0; }
+
+/* ─── Mermaid ────────────────────────────────────────────────── */
+.post-body .mermaid {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  text-align: center;
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+}

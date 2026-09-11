@@ -1,0 +1,25 @@
+site:
+  title: "Minimal Fixture"
+  url: "https://fixture.example"
+  description: "P0 smoke vault"
+  author: "tester"
+
+taxonomy:
+  tags:
+    label: "태그"
+    slug: "/tags"
+  category:
+    label: "카테고리"
+    slug: "/categories"
+
+theme:
+  darkMode: true
+  sidebar: "left"
+  toc: "right"
+
+build:
+  output: "dist"
+  incremental: false
+
+# no database — sync skipped
+# i18n defaults from schema

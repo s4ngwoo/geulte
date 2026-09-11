@@ -1,0 +1,56 @@
+{#
+  partials/header.njk — 사이트 헤더
+  모바일 햄버거 버튼 및 다크/라이트 모드 토글 버튼 포함
+#}
+<header class="site-header" role="banner">
+  <div class="site-header-inner">
+    <div class="site-header-left">
+      <!-- 모바일 햄버거 버튼 -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <a href="{{ localePrefix }}/" class="site-header-brand" aria-label="{{ site.title }} 홈">
+        <span class="site-header-title">{{ site.title }}</span>
+      </a>
+    </div>
+
+    <nav class="site-header-nav" aria-label="사이트 탐색">
+      <a href="{{ localePrefix }}/posts" class="header-nav-link {% if currentPath == '/posts' %}active{% endif %}">{{ t('nav.posts') }}</a>
+      <a href="{{ localePrefix }}/tags" class="header-nav-link {% if currentPath == '/tags' %}active{% endif %}">{{ t('nav.tags') }}</a>
+      <a href="{{ localePrefix }}/series" class="header-nav-link {% if currentPath and '/series' in currentPath %}active{% endif %}">{{ t('nav.series') }}</a>
+    </nav>
+
+    <div class="site-header-right">
+      <!-- 다국어 선택기 -->
+      {% if locales and locales.length > 1 %}
+      <div class="header-i18n-switcher">
+        {% for loc in locales %}
+          {% set altPrefix = '' if loc.code == defaultLocale else '/' + loc.code %}
+          <a href="{{ altPrefix }}{{ currentPath }}" class="i18n-link {% if locale == loc.code %}active{% endif %}" title="{{ loc.label }}">
+            {{ loc.code | upper }}
+          </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- 다크모드 / 라이트모드 토글 버튼 -->
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="테마 전환" title="테마 전환">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

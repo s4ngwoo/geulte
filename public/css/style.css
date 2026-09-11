@@ -1,0 +1,53 @@
+/* ============================================================
+   글터 (Geulte) — 메인 스타일시트
+   모듈화된 컴포넌트 아키텍처
+   ============================================================ */
+
+/* 1. Base (변수, 테마, 리셋, 전역 레이아웃) */
+@import './base/variables.css';
+@import './base/reset.css';
+@import './base/layout.css';
+
+/* 2. Typography (본문 프로즈 및 임베드) */
+@import './typography/prose.css';
+@import './typography/embeds.css';
+
+/* 3. Components (UI 컴포넌트) */
+@import './components/sidebar.css';
+@import './components/card.css';
+@import './components/post.css';
+@import './components/filter.css';
+@import './components/search.css';
+@import './components/series.css';
+@import './components/toc.css';
+@import './components/backlinks.css';
+@import './components/comments.css';
+@import './components/taxonomy.css';
+@import './components/widget.css';
+
+/* 4. Utilities */
+@import './utilities.css';
+
+/* i18n Switcher */
+.header-i18n-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+.i18n-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+.i18n-link:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.i18n-link.active {
+  background-color: var(--accent-color);
+  color: white;
+}

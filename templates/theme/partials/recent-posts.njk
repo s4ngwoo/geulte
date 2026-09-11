@@ -1,0 +1,27 @@
+{#
+  partials/recent-posts.njk — 최신글 위젯
+  draft=false 조건으로 date DESC 정렬된 {{ t('sidebar.recent_posts') }} 목록
+#}
+{% if sidebar.recentPosts and sidebar.recentPosts | length > 0 %}
+<div class="posts-widget-content" id="widgetRecentPosts" role="tabpanel" aria-labelledby="tabRecent">
+  <ul class="posts-widget-list">
+    {% for post in sidebar.recentPosts %}
+    <li class="posts-widget-item">
+      <a href="{{ localePrefix }}/posts/{{ post.slug }}" class="posts-widget-link {% if currentPath == '/posts/' + post.slug %}active{% endif %}">
+        <span class="posts-widget-title">{{ post.title }}</span>
+        <div class="posts-widget-meta">
+          <time class="posts-widget-date" datetime="{{ post.date | isodate }}">
+            {{ post.date | dateformat }}
+          </time>
+          {% if post.category %}
+          <span class="posts-widget-cat">{{ post.category }}</span>
+          {% endif %}
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% else %}
+<p class="posts-widget-empty">등록된 글이 없습니다.</p>
+{% endif %}

@@ -1,0 +1,376 @@
+/* ─── 위젯 공통 (태그 클라우드, 최신글/인기글 탭) ─────────────── */
+
+/* ─── 태그 클라우드 위젯 ─── */
+.tag-cloud-widget {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tag-cloud-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.tag-cloud-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.tag-cloud-icon {
+  color: var(--color-accent);
+}
+
+.tag-cloud-total {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  background: var(--color-bg-tertiary);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.tag-cloud-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 6px;
+  align-items: center;
+  line-height: 1.4;
+}
+
+/* 태그 4단계 정규화 티어 */
+.tag-cloud-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  line-height: 1.2;
+}
+
+.tag-cloud-item .tag-count-bubble {
+  font-size: 0.7em;
+  opacity: 0.85;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 1px 4px;
+  border-radius: 8px;
+}
+
+/* Tier 1: 하위 25% (가장 작고 흐림) */
+.tag-cloud-item.tier-1 {
+  font-size: 0.78rem;
+  opacity: 0.65;
+  color: var(--color-text-muted);
+  background: var(--color-bg-tertiary);
+  padding: 3px 7px;
+  border: 1px solid transparent;
+}
+.tag-cloud-item.tier-1:hover {
+  opacity: 0.9;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+/* Tier 2: 25% ~ 50% */
+.tag-cloud-item.tier-2 {
+  font-size: 0.88rem;
+  opacity: 0.82;
+  color: var(--color-text);
+  background: var(--color-bg-tertiary);
+  padding: 4px 9px;
+  border: 1px solid var(--color-border-muted);
+}
+.tag-cloud-item.tier-2:hover {
+  opacity: 1;
+  color: var(--color-accent);
+  border-color: var(--color-border);
+}
+
+/* Tier 3: 50% ~ 75% */
+.tag-cloud-item.tier-3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  opacity: 0.92;
+  color: var(--color-tag-text);
+  background: var(--color-tag);
+  padding: 5px 11px;
+  border: 1px solid rgba(88, 166, 255, 0.2);
+}
+.tag-cloud-item.tier-3:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Tier 4: 상위 25% (가장 크고 진함) */
+.tag-cloud-item.tier-4 {
+  font-size: 1.22rem;
+  font-weight: 700;
+  opacity: 1;
+  color: #ffffff;
+  background: var(--color-accent);
+  padding: 6px 13px;
+  box-shadow: 0 2px 8px rgba(88, 166, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+[data-theme="light"] .tag-cloud-item.tier-4 {
+  color: #ffffff;
+  background: var(--color-accent);
+}
+.tag-cloud-item.tier-4:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(88, 166, 255, 0.5);
+  background: var(--color-accent-hover);
+}
+
+/* maxItems 초과 태그 숨김 및 더 보기 토글 */
+.tag-cloud-item.is-overflow-tag {
+  display: none;
+}
+.tag-cloud-list.is-expanded .tag-cloud-item.is-overflow-tag {
+  display: inline-flex;
+}
+
+.tag-cloud-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-2);
+}
+
+.tag-cloud-toggle-btn {
+  background: transparent;
+  border: 1px dashed var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  padding: 4px 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all var(--transition-fast);
+}
+.tag-cloud-toggle-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-bg-tertiary);
+}
+
+/* 푸터 배치 스타일 */
+.site-footer-tagcloud {
+  max-width: var(--max-width);
+  margin: var(--space-8) auto 0;
+  padding: 0 var(--space-6);
+}
+.site-footer-tagcloud .tag-cloud-widget {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+}
+
+/* ─── 최신글 / 인기글 탭 위젯 ─── */
+.posts-tab-widget {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.posts-tab-nav {
+  display: flex;
+  background: var(--color-bg-tertiary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.posts-tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: var(--space-3) var(--space-2);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.posts-tab-btn:hover {
+  color: var(--color-text);
+}
+
+.posts-tab-btn.active {
+  color: var(--color-accent);
+  font-weight: 600;
+  border-bottom-color: var(--color-accent);
+  background: var(--color-bg-secondary);
+}
+
+.posts-tab-body {
+  padding: var(--space-2) 0;
+}
+
+.posts-widget-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.posts-widget-item {
+  border-bottom: 1px solid var(--color-border-muted);
+}
+.posts-widget-item:last-child {
+  border-bottom: none;
+}
+
+.posts-widget-link {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background var(--transition-fast);
+}
+.posts-widget-link:hover {
+  background: var(--color-bg-tertiary);
+}
+.posts-widget-link.active {
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-bg-tertiary);
+}
+
+.posts-widget-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.posts-widget-title {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.posts-widget-link:hover .posts-widget-title {
+  color: var(--color-accent);
+}
+
+.posts-widget-metric {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-tag);
+  padding: 2px 6px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.posts-widget-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+}
+
+.posts-widget-cat {
+  background: var(--color-bg);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-muted);
+}
+
+.posts-widget-empty {
+  padding: var(--space-4);
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* ─── 레이지 로딩 센티널 & 인디케이터 ─── */
+.posts-lazy-sentinel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) 0;
+  margin-top: var(--space-4);
+  width: 100%;
+}
+
+.lazy-loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.lazy-load-more-btn {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  padding: var(--space-2) var(--space-6);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lazy-load-more-btn:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.lazy-end-message {
+  text-align: center;
+}
+
+.lazy-end-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  background: var(--color-bg-tertiary);
+  padding: var(--space-2) var(--space-4);
+  border-radius: 999px;
+  border: 1px solid var(--color-border-muted);
+  display: inline-block;
+  margin: 0;
+}
+

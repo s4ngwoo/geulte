@@ -1,0 +1,134 @@
+/* ─── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@400;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ─── CSS 변수 (다크 테마 기본) ─────────────────────────────── */
+:root {
+  /* 색상 팔레트 */
+  --color-bg: #0f1117;
+  --color-bg-secondary: #161b22;
+  --color-bg-tertiary: #1c2128;
+  --color-border: #30363d;
+  --color-border-muted: #21262d;
+
+  --color-text: #e6edf3;
+  --color-text-muted: #8b949e;
+  --color-text-subtle: #6e7681;
+
+  --color-accent: #58a6ff;
+  --color-accent-hover: #79b8ff;
+  --color-accent-muted: #1f3a5f;
+
+  --color-tag: #1f3a5f;
+  --color-tag-text: #58a6ff;
+  --color-tag-topic: #1a3a2a;
+  --color-tag-topic-text: #3fb950;
+  --color-tag-keyword: #3a2a1a;
+  --color-tag-keyword-text: #d29922;
+
+  --color-callout-note: #1f3a5f;
+  --color-callout-note-border: #58a6ff;
+  --color-callout-warning: #3a2a00;
+  --color-callout-warning-border: #d29922;
+  --color-callout-tip: #1a3a2a;
+  --color-callout-tip-border: #3fb950;
+  --color-callout-danger: #3a1a1a;
+  --color-callout-danger-border: #f85149;
+
+  --color-wikilink: #58a6ff;
+  --color-wikilink-broken: #8b949e;
+
+  --color-code-bg: #161b22;
+  --color-code-border: #30363d;
+  --color-pre-bg: #0d1117;
+
+  /* 타이포그래피 */
+  --font-sans: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Noto Serif KR', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+  --line-height-body: 1.8;
+  --line-height-heading: 1.35;
+
+  /* 레이아웃 */
+  --sidebar-left-width: 260px;
+  --sidebar-right-width: 240px;
+  --content-max-width: 740px;
+  --max-width: 1440px;
+  --layout-gap: 1.5rem;
+
+  /* 간격 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* 테두리 반경 */
+  --radius-sm: 0.25rem;
+  --radius: 0.375rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* 그림자 */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow: 0 4px 6px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
+
+  /* 전환 */
+  --transition: 0.2s ease;
+  --transition-fast: 0.1s ease;
+}
+
+/* ─── 라이트 테마 ────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f6f8fa;
+  --color-bg-tertiary: #eaeef2;
+  --color-border: #d0d7de;
+  --color-border-muted: #e4e7eb;
+
+  --color-text: #1f2328;
+  --color-text-muted: #57606a;
+  --color-text-subtle: #818b98;
+
+  --color-accent: #0969da;
+  --color-accent-hover: #1a7fd4;
+  --color-accent-muted: #dbeafe;
+
+  --color-tag: #dbeafe;
+  --color-tag-text: #0969da;
+  --color-tag-topic: #dcfce7;
+  --color-tag-topic-text: #16a34a;
+  --color-tag-keyword: #fef9c3;
+  --color-tag-keyword-text: #ca8a04;
+
+  --color-callout-note: #eff6ff;
+  --color-callout-note-border: #0969da;
+  --color-callout-warning: #fffbeb;
+  --color-callout-warning-border: #d97706;
+  --color-callout-tip: #f0fdf4;
+  --color-callout-tip-border: #16a34a;
+  --color-callout-danger: #fff1f2;
+  --color-callout-danger-border: #e11d48;
+
+  --color-wikilink: #0969da;
+  --color-wikilink-broken: #57606a;
+
+  --color-code-bg: #f6f8fa;
+  --color-code-border: #d0d7de;
+  --color-pre-bg: #f6f8fa;
+}

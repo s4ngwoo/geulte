@@ -1,0 +1,104 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem('geulte-theme');
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+  })();
+</script>
+<meta name="description" content="{{ seoDescription if seoDescription else (post.excerpt if post else site.description) }}">
+<meta name="author" content="{{ site.author }}">
+
+{% if currentPath == '/' %}
+<link rel="canonical" href="{{ siteUrl }}/">
+{% else %}
+<link rel="canonical" href="{{ siteUrl }}{{ currentPath }}">
+{% endif %}
+
+<!-- i18n hreflang -->
+{% if locales %}
+  {% for loc in locales %}
+    {% set altPrefix = '' if loc.code == defaultLocale else '/' + loc.code %}
+    <link rel="alternate" hreflang="{{ loc.code }}" href="{{ site.url }}{{ altPrefix }}{{ currentPath }}">
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ currentPath }}">
+{% endif %}
+
+{% set metaDesc = seoDescription if seoDescription else (post.excerpt if post else site.description) %}
+{% set ogImage = coverImage if coverImage else (site.url + '/og/' + post.slug + '.png' if post else site.url + '/og/home.png') %}
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ metaDesc }}">
+<meta property="og:type" content="{{ 'article' if post else 'website' }}">
+<meta property="og:url" content="{{ siteUrl }}{{ currentPath }}">
+{% if post %}
+<meta property="og:image" content="{{ ogImage }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ pageTitle }}">
+<meta name="twitter:description" content="{{ metaDesc }}">
+<meta name="twitter:image" content="{{ ogImage }}">
+{% else %}
+<meta property="og:image" content="{{ site.url }}/og/home.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ pageTitle }}">
+<meta name="twitter:description" content="{{ site.description }}">
+{% endif %}
+
+<title>{{ pageTitle }}</title>
+{% if post %}
+{% set authorName = site.title %}
+{% if site.author %}
+  {% if site.author.name %}
+    {% set authorName = site.author.name %}
+  {% else %}
+    {% set authorName = site.author %}
+  {% endif %}
+{% endif %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ post.title | tojson | safe }},
+  "datePublished": "{{ post.date | isodate }}",
+  {% if post.updated %}"dateModified": "{{ post.updated | isodate }}",{% endif %}
+  "description": {{ (metaDesc or '') | tojson | safe }},
+  "mainEntityOfPage": {{ (siteUrl ~ currentPath) | tojson | safe }},
+  "author": {
+    "@type": "Person",
+    "name": {{ authorName | tojson | safe }}
+  }
+}
+</script>
+{% endif %}
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+
+<!-- 글터 스타일 -->
+<link rel="stylesheet" href="/_geulte/css/style.css">
+
+<!-- 커스텀 accent color -->
+{% if theme.accentColor %}
+<style>
+  :root { --color-accent: {{ theme.accentColor }}; }
+</style>
+{% endif %}
+
+<!-- 검색 인덱스 프리페치 -->
+<link rel="prefetch" href="/search-index.json">
+
+<!-- RSS 자동 탐색 -->
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ localePrefix }}/rss.xml">
+{% if currentCategory %}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} — {{ currentCategory }}" href="{{ localePrefix }}/categories/{{ currentCategory | lower | replace(' ', '-') }}/rss.xml">
+{% endif %}

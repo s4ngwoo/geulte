@@ -1,0 +1,59 @@
+{#
+  partials/series-nav.njk — 시리즈 이전/다음 + 진행률
+  requires: post, prevPost, nextPost, seriesIndex, seriesTotal
+#}
+{% if post.series %}
+<div class="series-nav-card" aria-label="시리즈 탐색">
+  <div class="series-nav-header">
+    <span class="series-nav-label">📚 시리즈</span>
+    <a href="{{ localePrefix }}/series/{{ post.series | urlencode }}" class="series-nav-name">
+      {{ post.series }}
+    </a>
+    {% if seriesIndex and seriesTotal %}
+    <span class="series-nav-progress" aria-label="시리즈 진행률">
+      <span class="series-progress-bar" role="progressbar"
+        aria-valuenow="{{ seriesIndex }}"
+        aria-valuemin="1"
+        aria-valuemax="{{ seriesTotal }}"
+        style="--progress: {{ ((seriesIndex / seriesTotal) * 100) | round }}%">
+      </span>
+      <span class="series-progress-text">{{ seriesIndex }}/{{ seriesTotal }}</span>
+    </span>
+    {% endif %}
+  </div>
+
+  <nav class="series-nav-links" aria-label="이전/다음 글">
+    {% if prevPost %}
+    <a href="{{ localePrefix }}/posts/{{ prevPost.slug }}" class="series-nav-btn series-nav-prev" aria-label="이전 글: {{ prevPost.title }}">
+      <span class="series-nav-direction">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="14" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"/>
+        </svg>
+        이전
+      </span>
+      <span class="series-nav-title">{{ prevPost.title | truncate(50) }}</span>
+    </a>
+    {% else %}
+    <span class="series-nav-btn series-nav-prev series-nav-btn--disabled" aria-disabled="true">
+      <span class="series-nav-direction">처음 글</span>
+    </span>
+    {% endif %}
+
+    {% if nextPost %}
+    <a href="{{ localePrefix }}/posts/{{ nextPost.slug }}" class="series-nav-btn series-nav-next" aria-label="다음 글: {{ nextPost.title }}">
+      <span class="series-nav-title">{{ nextPost.title | truncate(50) }}</span>
+      <span class="series-nav-direction">
+        다음
+        <svg viewBox="0 0 20 20" fill="currentColor" width="14" aria-hidden="true">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"/>
+        </svg>
+      </span>
+    </a>
+    {% else %}
+    <span class="series-nav-btn series-nav-next series-nav-btn--disabled" aria-disabled="true">
+      <span class="series-nav-direction">마지막 글</span>
+    </span>
+    {% endif %}
+  </nav>
+</div>
+{% endif %}

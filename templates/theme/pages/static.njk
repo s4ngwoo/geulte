@@ -1,0 +1,23 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<article class="post-article static-page">
+  <header class="post-header">
+    <h1 class="post-title">{{ post.title }}</h1>
+    {% if post.updated or post.date %}
+    <div class="post-dates">
+      <time datetime="{{ post.date | isodate }}">{{ post.date | dateformat }}</time>
+      {% if post.updated %}
+      <span class="post-updated">
+        (수정: <time datetime="{{ post.updated | isodate }}">{{ post.updated | dateformat }}</time>)
+      </span>
+      {% endif %}
+    </div>
+    {% endif %}
+  </header>
+
+  <div class="post-body">
+    {{ post.contentHtml | safe }}
+  </div>
+</article>
+{% endblock %}

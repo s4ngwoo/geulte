@@ -1,0 +1,44 @@
+{#
+  partials/tag-cloud.njk — 태그 클라우드 위젯
+  빈도수 기반 4단계 정규화(tier-1 ~ tier-4) 크기 및 색상 농도 지원
+  설정된 maxItems 초과 시 '더 보기' 토글 제공
+#}
+{% if sidebar.tagCloud and sidebar.tagCloud | length > 0 %}
+{% set maxItems = theme.tagCloud.maxItems | default(50) %}
+<section class="tag-cloud-widget" aria-label="태그 클라우드">
+  <div class="tag-cloud-header">
+    <h3 class="tag-cloud-title">
+      <svg class="tag-cloud-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+        <line x1="7" y1="7" x2="7.01" y2="7"/>
+      </svg>
+      {{ taxonomy.tags.label if taxonomy.tags else '태그 클라우드' }}
+    </h3>
+    <span class="tag-cloud-total">{{ sidebar.tagCloud | length }}</span>
+  </div>
+
+  <div class="tag-cloud-list" id="tagCloudList">
+    {% for tag in sidebar.tagCloud %}
+      <a
+        href="{{ tag.slug }}"
+        class="tag-cloud-item tier-{{ tag.tier }}{% if loop.index > maxItems %} is-overflow-tag{% endif %}"
+        data-count="{{ tag.count }}"
+        data-tier="{{ tag.tier }}"
+        title="{{ tag.name }} ({{ tag.count }}개 글)"
+      >
+        <span class="tag-name">#{{ tag.name }}</span>
+        <span class="tag-count-bubble">{{ tag.count }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  {% if sidebar.tagCloud | length > maxItems %}
+  <div class="tag-cloud-actions">
+    <button type="button" class="tag-cloud-toggle-btn" id="tagCloudToggleBtn" aria-expanded="false">
+      <span class="toggle-text">더 보기 ({{ sidebar.tagCloud | length - maxItems }}개)</span>
+      <span class="toggle-arrow">▾</span>
+    </button>
+  </div>
+  {% endif %}
+</section>
+{% endif %}

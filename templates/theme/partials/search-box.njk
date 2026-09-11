@@ -1,0 +1,33 @@
+{#
+  partials/search-box.njk — MiniSearch 실시간 검색창
+  드롭다운 결과, 키보드 네비게이션, 검색어 하이라이트
+#}
+<div class="search-box" role="search" aria-label="글 검색">
+  <label for="searchInput" class="sr-only">검색</label>
+  <div class="search-input-wrap">
+    <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <circle cx="8.5" cy="8.5" r="5.5"/>
+      <line x1="13" y1="13" x2="18" y2="18"/>
+    </svg>
+    <input
+      type="search"
+      id="searchInput"
+      class="search-input"
+      placeholder="검색…"
+      autocomplete="off"
+      spellcheck="false"
+      aria-autocomplete="list"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+      aria-controls="searchResults"
+    >
+    <kbd class="search-kbd" aria-hidden="true">⌘K</kbd>
+  </div>
+  <div
+    id="searchResults"
+    class="search-results"
+    role="listbox"
+    aria-label="검색 결과"
+    aria-live="polite"
+  ></div>
+</div>

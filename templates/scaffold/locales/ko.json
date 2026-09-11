@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "홈",
+    "posts": "글 목록",
+    "tags": "태그",
+    "series": "시리즈",
+    "topics": "주제",
+    "keywords": "키워드",
+    "categories": "카테고리"
+  },
+  "sidebar": {
+    "recent_posts": "최신 글",
+    "popular_posts": "인기 글",
+    "toc": "목차",
+    "backlinks": "이 글을 링크한 문서",
+    "related": "연관된 글",
+    "no_backlinks": "아직 이 글을 링크한 문서가 없습니다."
+  },
+  "post": {
+    "series_prev": "이전 글",
+    "series_next": "다음 글"
+  },
+  "search": {
+    "placeholder": "검색 (Ctrl+K)...",
+    "no_results": "검색 결과가 없습니다.",
+    "count": "{count}개의 결과를 찾았습니다."
+  }
+}

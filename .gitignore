@@ -1,0 +1,16 @@
+node_modules/
+dist/
+test-blog/
+scratch/
+generate_posts.js
+.DS_Store
+.env
+.env.local
+*.log
+
+# Private developer / AI working notes (never publish)
+notes/
+notes/**
+
+# Image optimize cache
+.geulte-cache/

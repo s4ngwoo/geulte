@@ -1,0 +1,29 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="page-series">
+  <header class="page-header">
+    <div class="series-badge">📚 시리즈</div>
+    <h1 class="page-title">{{ seriesName }}</h1>
+    <p class="post-count">총 {{ posts | length }}편</p>
+  </header>
+
+  <ol class="series-post-list">
+    {% for post in posts %}
+    <li class="series-post-item">
+      <div class="series-post-num">{{ loop.index }}</div>
+      <div class="series-post-body">
+        <a href="{{ localePrefix }}/posts/{{ post.slug }}" class="series-post-title">{{ post.title }}</a>
+        <div class="series-post-meta">
+          <time datetime="{{ post.date | isodate }}">{{ post.date | dateformat }}</time>
+          {% if post.type %}<span class="post-type post-type--{{ post.type }}">{{ post.type }}</span>{% endif %}
+        </div>
+        {% if post.excerpt %}
+        <p class="series-post-excerpt">{{ post.excerpt | truncate(120) }}</p>
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}
