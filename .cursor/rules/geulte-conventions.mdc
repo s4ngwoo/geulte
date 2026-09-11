@@ -5,14 +5,12 @@ alwaysApply: true
 
 # Geulte conventions
 
-자세한 맥락: `notes/conventions.md`
-
 ## Git
 
-- `notes/`는 커밋하지 않는다 (gitignore).
 - 커밋·푸시는 사용자가 요청할 때만.
 - 시크릿·`.env`·개인 절대 경로 커밋 금지.
 - 메시지 접두: `feat:` / `fix:` / `refactor:` / `docs:` / `chore:` (레포 스타일이 있으면 우선).
+- 로컬 전용·gitignore 경로는 커밋하지 않는다 (`notes/`, `test-blog/`, `ui-smoke/`, `dist/` 등).
 
 ## 코드
 
@@ -20,7 +18,6 @@ alwaysApply: true
 - 빌드: `tsup` → `dist/` (gitignore).
 - CLI: `src/cli/index.ts` → bin `geulte`.
 - `templates/` = 사용자 사이트 스캐폴드. 프레임워크 `src/`와 섞지 말 것.
-- `test-blog/`는 로컬 실험용 (gitignore).
 
 ## 개발 방식
 
@@ -32,5 +29,4 @@ alwaysApply: true
 
 - 한국어로 소통. 불필요한 스코프 확대 지양.
 - 공개 정책·기능 문구 → `README.md` + `README.en.md` (+ `docs/CHANGELOG.md`).
-- 부채·가설·장애 → `notes/`만. 공개 이슈에 취약점 PoC 상세 금지.
-- 예상 밖 실패를 고치면 `notes/errors/YYYY-MM-DD-<슬러그>.md` (가설·기각 시도 포함).
+- 부채·가설·장애 상세·취약점 PoC는 공개 이슈/README에 쓰지 않는다. (유지자 로컬 `notes/`가 있으면 그쪽만; 클론에는 없음.)

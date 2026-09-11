@@ -12,7 +12,7 @@
   'use strict';
 
   const cfg = window.__GEULTE_FILTER__;
-  if (!cfg || !cfg.supabaseUrl) return;
+  if (!cfg) return;
 
   // ── DOM refs ──────────────────────────────────────────────────────────────
   const filterPanel   = document.getElementById('filterPanel');

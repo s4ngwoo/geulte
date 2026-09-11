@@ -4,8 +4,11 @@ test-blog/
 scratch/
 generate_posts.js
 .DS_Store
+Thumbs.db
 .env
 .env.local
+.env.*
+!.env.example
 *.log
 
 # Private developer / AI working notes (never publish)
@@ -20,3 +23,13 @@ geulte-*.tgz
 
 # Local UI smoke vault (dozens of generated posts; never publish)
 ui-smoke/
+
+# Test / coverage / browser automation artifacts
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+blob-report/
+
+# Hosting CLI local state
+.vercel/

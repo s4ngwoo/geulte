@@ -15,7 +15,7 @@
 
 - **Obsidian 호환**: `[[wikilinks]]`, callouts, 각주, 백링크 완전 지원
 - **다중 분류(taxonomy)**: 태그, 토픽, 키워드, 카테고리, 시리즈를 독립적으로 사용
-- **조합 필터**: `/posts` 목록에서 태그, 토픽, 카테고리를 동적으로 다중 조합하여 필터링 (Vercel Serverless Function 지원)
+- **조합 필터**: `/posts`에서 태그·토픽·키워드·카테고리·시리즈 다중 조합. `geulte dev`의 로컬 `/api/filter` 또는 Vercel Serverless `api/filter`(+ Supabase)로 동작 — `database.url` 설정 여부와 무관하게 패널이 켜짐
 - **시리즈 네비게이션**: 묶음 글(시리즈) 기능, 자동 이전/다음 글 링크 및 진행률 지원
 - **클라이언트 검색**: ⌘K 단축키, 방향키 지원, 실시간 하이라이트 검색 (MiniSearch 기반)
 - **태그 클라우드 위젯**: 빈도수 기반 4단계 정규화(Tier 1~4) 크기/농도 지원, 접기/펼치기 및 영속화 지원
@@ -34,7 +34,7 @@
 - **개발 라이브 리로드**: `geulte dev`에서 파일 변경 후 브라우저 자동 새로고침 (SSE)
 - **고정 페이지**: `content/pages/` → `/{slug}/` (목록·RSS 비포함)
 - **이미지 최적화 (선택)**: `build.images.enabled` 시 sharp WebP/AVIF srcset
-- **플러그인 훅**: `geulte.config.mjs` — `onConfig` / `afterScan` / `afterGenerate`
+- **플러그인 훅**: `geulte.config.mjs` — 현재 `onConfig` / `afterScan` / `afterGenerate`만 지원 (`beforeParse` 등은 미구현)
 - **조회수 및 대시보드**: Supabase 연동을 통한 실시간 조회수 트래킹 및 통계용 백오피스 대시보드(`/dashboard`) 제공
 - **Giscus 댓글 동기화**: Github Discussions 기반 댓글 위젯 기본 내장 및 라이트/다크 테마 실시간 동기화
 - **수식 & 다이어그램**: KaTeX 수식, Mermaid 다이어그램 내장
@@ -56,6 +56,7 @@ npm install
 # 3. 개발 서버 실행
 npm run dev
 # → http://localhost:3000
+# 스캐폴드에 content/pages/about.md 예시와 api/filter.js가 포함됩니다.
 
 # 4. 배포 빌드 (Supabase 동기화 포함)
 npm run build
@@ -134,7 +135,7 @@ draft: false                 # true면 빌드에서 제외
 ---
 ```
 
-고정 페이지는 `content/pages/*.md` → `/{slug}/` (글 목록·RSS에 포함되지 않음).
+고정 페이지는 `content/pages/*.md` → `/{slug}/` (글 목록·RSS에 포함되지 않음). `geulte init` 스캐폴드는 `content/pages/about.md` 예시를 포함합니다.
 
 ---
 
@@ -210,7 +211,7 @@ database:
 
 build:
   output: "dist"                    # 출력 디렉토리
-  incremental: false                # 증분 빌드 (향후 지원)
+  incremental: false                # 예약 필드 — 아직 미구현 (무시됨)
   images:
     enabled: false                  # true면 sharp로 WebP/AVIF srcset
     widths: [640, 1280]
@@ -220,6 +221,8 @@ build:
 ---
 
 ## 플러그인 (`geulte.config.mjs`)
+
+현재 지원 훅은 **`onConfig` / `afterScan` / `afterGenerate` 세 가지뿐**입니다. (`beforeParse`, `afterParse`, `beforeRender` 등은 아직 없습니다.)
 
 ```js
 export default {

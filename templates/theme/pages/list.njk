@@ -75,7 +75,8 @@
   </div>
 </div>
 
-{% if listType == 'posts' and supabaseUrl %}
+{# Combination filter uses /api/filter (Vercel) or geulte dev mock — not gated on database.url #}
+{% if listType == 'posts' %}
 <script>
   window.__GEULTE_FILTER__ = {
     supabaseUrl: {{ supabaseUrl | tojson | safe }},
@@ -83,7 +84,8 @@
     allTags: {{ sidebar.tags | tojson | safe }},
     allTopics: {{ sidebar.topics | tojson | safe }},
     allKeywords: {{ sidebar.keywords | tojson | safe }},
-    allCategories: {{ sidebar.categories | tojson | safe }}
+    allCategories: {{ sidebar.categories | tojson | safe }},
+    allSeries: {{ sidebar.series | tojson | safe }}
   };
 </script>
 <script src="/_geulte/js/filter.js" defer></script>

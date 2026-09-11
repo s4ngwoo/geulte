@@ -6,8 +6,6 @@ alwaysApply: false
 
 # Geulte architecture layers
 
-자세한 맥락: `notes/architecture.md`
-
 ## 의존성 규칙
 
 1. Domain은 Node FS·Nunjucks·Supabase·unified를 import하지 않는다.

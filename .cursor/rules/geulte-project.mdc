@@ -5,23 +5,19 @@ alwaysApply: true
 
 # Geulte project
 
-자세한 맥락: `notes/ai-context.md`
-
 ## 무엇인가
 
 - **글터 (Geulte)** — Obsidian 스타일 마크다운 볼트 → 다중 taxonomy 정적 블로그 SSG.
 - npm `geulte`, MIT, TypeScript ESM, CLI: `init` / `dev` / `build` / `sync`.
 - 공개 문서: `README.md`(KO), `README.en.md`(EN), `docs/CHANGELOG.md`.
-- `notes/`는 gitignore — 외부 비공개.
 
 ## 불변 제약
 
-1. 프레임워크 레포와 사용자 사이트(`test-blog/` 등)를 혼동하지 말 것.
+1. 프레임워크 레포와 사용자 사이트(로컬 실험 디렉터리 등)를 혼동하지 말 것.
 2. Supabase 키·`.env`는 공개 문서/커밋에 넣지 않음.
-3. 부채·가설·내부 계획은 `notes/` (완료 이니셔티브는 `notes/archive/` 동결).
-4. 예상 밖 실패 → `notes/errors/`; 페이즈 실행 → `notes/logs/` (요청 없어도 작성).
-5. 커밋/푸시는 사용자 요청 시에만.
-6. 한국어 소통 · 오픈소스 유지 · 과잉 엔지니어링·문서 스코프 확대 지양.
+3. 부채·가설·내부 계획·장애 일지는 공개 문서에 쓰지 않는다. (유지자 로컬 `notes/`는 gitignore.)
+4. 커밋/푸시는 사용자 요청 시에만.
+5. 한국어 소통 · 오픈소스 유지 · 과잉 엔지니어링·문서 스코프 확대 지양.
 
 ## 진입점 (요약)
 

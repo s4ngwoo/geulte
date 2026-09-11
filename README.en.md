@@ -15,7 +15,7 @@ Changelog: [docs/CHANGELOG.md](./docs/CHANGELOG.md)
 
 - **Obsidian Compatibility**: Full support for `[[wikilinks]]`, callouts, footnotes, and backlinks.
 - **Multiple Taxonomies**: Independent use of tags, topics, keywords, categories, and series.
-- **Combination Filter**: Dynamically filter by combining tags, topics, and categories on the `/posts` list (powered by Vercel Serverless Functions).
+- **Combination Filter**: On `/posts`, combine tags, topics, keywords, categories, and series. Works via `geulte dev` local `/api/filter` or Vercel Serverless `api/filter` (+ Supabase). The panel is shown regardless of whether `database.url` is set.
 - **Series Navigation**: Grouped posts (series) feature with automatic prev/next links and progress indicators.
 - **Client-Side Search**: ⌘K shortcut, keyboard navigation, and real-time highlight search (powered by MiniSearch).
 - **Tag Cloud Widget**: 4-tier normalized font sizes and color densities based on tag frequency, with persistent collapsible state support.
@@ -34,7 +34,7 @@ Changelog: [docs/CHANGELOG.md](./docs/CHANGELOG.md)
 - **Dev live reload**: `geulte dev` auto-refreshes the browser after rebuilds (SSE)
 - **Static pages**: `content/pages/` → `/{slug}/` (excluded from lists/RSS)
 - **Optional image optimization**: `build.images.enabled` for sharp WebP/AVIF srcset
-- **Plugin hooks**: `geulte.config.mjs` — `onConfig` / `afterScan` / `afterGenerate`
+- **Plugin hooks**: `geulte.config.mjs` — currently only `onConfig` / `afterScan` / `afterGenerate` (`beforeParse` etc. not implemented)
 - **View Count & Dashboard**: Real-time view count tracking (via Supabase RPC) and an integrated backoffice dashboard (`/dashboard`) for statistics.
 - **Giscus Comments Sync**: Built-in Github Discussions widget with real-time light/dark theme synchronization.
 - **Math & Diagrams**: Built-in support for KaTeX math and Mermaid diagrams.
@@ -56,6 +56,7 @@ npm install
 # 3. Run development server
 npm run dev
 # → http://localhost:3000
+# Scaffold includes content/pages/about.md and api/filter.js.
 
 # 4. Build for production (includes Supabase sync)
 npm run build
@@ -128,7 +129,7 @@ draft: false                     # Excludes from build if true
 ---
 ```
 
-Static pages live in `content/pages/*.md` → `/{slug}/` (excluded from post lists and RSS).
+Static pages live in `content/pages/*.md` → `/{slug}/` (excluded from post lists and RSS). The `geulte init` scaffold includes a sample `content/pages/about.md`.
 
 ---
 
@@ -204,7 +205,7 @@ database:
 
 build:
   output: "dist"
-  incremental: false                # reserved; not implemented yet
+  incremental: false                # reserved field — not implemented (ignored)
   images:
     enabled: false                  # sharp WebP/AVIF srcset when true
     widths: [640, 1280]
@@ -214,6 +215,8 @@ build:
 ---
 
 ## Plugins (`geulte.config.mjs`)
+
+Only **`onConfig` / `afterScan` / `afterGenerate`** are supported today. (`beforeParse`, `afterParse`, `beforeRender`, etc. are not available yet.)
 
 ```js
 export default {

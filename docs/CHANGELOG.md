@@ -23,14 +23,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- README KO/EN updated for pages, images, plugins, live reload, Shiki, and OG font note
+- README KO/EN honesty pass: `build.incremental` reserved/unimplemented, plugin hook scope, scaffold `about` page, combination filter runtime (`geulte dev` / Vercel `/api/filter`)
 - Root `implementation_plan.md` moved to private archive
 
 ### Fixed
 
 - OG builtin font path when running from TypeScript source (tests / non-bundled)
+- Combination filter: inject `allSeries` into `__GEULTE_FILTER__`; enable panel on `/posts` without requiring a truthy `database.url`
 
 ### Notes
 
 - `build.incremental` remains reserved (not implemented)
 - OG image generation skips when the Noto Sans KR bold font is missing
+- npm publish still deferred pending a deliberate release cut
