@@ -302,10 +302,11 @@ Geulte는 빌드 때 자동 생성을 시도하지만, **폰트 파일**이 필�
 <a id="q-help"></a>
 ## 16. 문제가 생기면 어디를 보나요?
 
-1. 이 FAQ와 [시작하기](getting-started.md)  
-2. 루트 [README.md](../README.md) 설정·Supabase·Vercel 절  
-3. [CHANGELOG](CHANGELOG.md) — 최근에 바뀐 동작  
-4. GitHub Issues (공개 저장소) — **비밀번호·키·취약점 상세 PoC는 올리지 마세요**
+1. 따라 하기: [튜토리얼](tutorials/README.md)  
+2. 이 FAQ와 [시작하기](getting-started.md)  
+3. 루트 [README.md](../README.md) 설정·Supabase·Vercel 절  
+4. [CHANGELOG](CHANGELOG.md) — 최근에 바뀐 동작  
+5. GitHub Issues (공개 저장소) — **비밀번호·키·취약점 상세 PoC는 올리지 마세요**
 
 ---
 

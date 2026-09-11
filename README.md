@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 변경 이력: [docs/CHANGELOG.md](./docs/CHANGELOG.md)  
-사용 가이드·FAQ: [docs/](./docs/README.md) ([FAQ](./docs/faq.md) · [시작하기](./docs/getting-started.md) · [배포](./docs/deploy.md))
+사용 가이드·FAQ: [docs/](./docs/README.md) ([튜토리얼](./docs/tutorials/README.md) · [FAQ](./docs/faq.md) · [시작하기](./docs/getting-started.md) · [배포](./docs/deploy.md))
 
 ---
 

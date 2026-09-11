@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Framework CI workflow (test + typecheck)
 - Package `.d.ts` generation via tsup (`dts: true`)
 - User docs under `docs/` (getting started, how it works, writing, deploy layers, config, glossary, friendly FAQ)
+- Step-by-step tutorials: local testing, Supabase setup, Vercel deploy (`docs/tutorials/`)
 
 ### Changed
 

@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Changelog: [docs/CHANGELOG.md](./docs/CHANGELOG.md)  
-Guides & FAQ (Korean): [docs/](./docs/README.md) ([FAQ](./docs/faq.md) · [Getting started](./docs/getting-started.md) · [Deploy](./docs/deploy.md))
+Guides & FAQ (Korean): [docs/](./docs/README.md) ([Tutorials](./docs/tutorials/README.md) · [FAQ](./docs/faq.md) · [Getting started](./docs/getting-started.md) · [Deploy](./docs/deploy.md))
 
 ---
 
