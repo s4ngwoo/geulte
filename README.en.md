@@ -7,7 +7,20 @@
 [![npm version](https://badge.fury.io/js/geulte.svg)](https://www.npmjs.com/package/geulte)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Changelog: [docs/CHANGELOG.md](./docs/CHANGELOG.md)
+Changelog: [docs/CHANGELOG.md](./docs/CHANGELOG.md)  
+Guides & FAQ (Korean): [docs/](./docs/README.md) ([FAQ](./docs/faq.md) · [Getting started](./docs/getting-started.md) · [Deploy](./docs/deploy.md))
+
+---
+
+## Required · recommended · optional (deploy)
+
+| Layer | What |
+| :--- | :--- |
+| **Required** | `geulte build` → host the static `dist/` (no always-on app server) |
+| **Recommended full stack** | GitHub + Vercel (+ Supabase) — best-documented scaffold path |
+| **Optional** | sync · view counts · dashboard · production combination filter |
+
+Details (Korean): [docs/deploy.md](./docs/deploy.md) · [docs/faq.md](./docs/faq.md)
 
 ---
 

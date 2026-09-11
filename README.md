@@ -7,7 +7,20 @@
 [![npm version](https://badge.fury.io/js/geulte.svg)](https://www.npmjs.com/package/geulte)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-변경 이력: [docs/CHANGELOG.md](./docs/CHANGELOG.md)
+변경 이력: [docs/CHANGELOG.md](./docs/CHANGELOG.md)  
+사용 가이드·FAQ: [docs/](./docs/README.md) ([FAQ](./docs/faq.md) · [시작하기](./docs/getting-started.md) · [배포](./docs/deploy.md))
+
+---
+
+## 필수 · 권장 · 선택 (배포)
+
+| 층 | 내용 |
+| :--- | :--- |
+| **필수** | `geulte build` → `dist/` 정적 파일을 아무 호스트에 배포 (상시 앱 서버 불필요) |
+| **권장 풀스택** | GitHub + Vercel (+ Supabase) — 스캐폴드가 가장 잘 안내하는 경로 |
+| **선택** | sync · 조회수 · 대시보드 · 프로덕션 조합 필터 |
+
+자세히: [docs/deploy.md](./docs/deploy.md) · [docs/faq.md](./docs/faq.md)
 
 ---
 

@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Plugin hooks via `geulte.config.mjs` (`onConfig`, `afterScan`, `afterGenerate`)
 - Framework CI workflow (test + typecheck)
 - Package `.d.ts` generation via tsup (`dts: true`)
+- User docs under `docs/` (getting started, how it works, writing, deploy layers, config, glossary, friendly FAQ)
 
 ### Changed
 
