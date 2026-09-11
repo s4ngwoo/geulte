@@ -17,3 +17,6 @@ notes/**
 
 # Local npm pack artifacts
 geulte-*.tgz
+
+# Local UI smoke vault (dozens of generated posts; never publish)
+ui-smoke/
