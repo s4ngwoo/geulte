@@ -1,0 +1,28 @@
+---
+description: Geulte 클린 아키텍처 레이어·의존성 방향
+globs: src/**/*.{ts,js}
+alwaysApply: false
+---
+
+# Geulte architecture layers
+
+자세한 맥락: `notes/architecture.md`
+
+## 의존성 규칙
+
+1. Domain은 Node FS·Nunjucks·Supabase·unified를 import하지 않는다.
+2. Application은 Domain만 의존하고, I/O는 포트로 추상화한다.
+3. Adapters가 Application/Domain을 구현·호출한다. **반대 방향 금지.**
+4. 레거시 `src/core/*`는 Adapter+Application 혼재 — **슬라이스마다** Domain으로 규칙을 뽑는다 (빅뱅 금지).
+
+## 경로
+
+| 경로 | 레이어 |
+| :--- | :--- |
+| `src/domain/` | 순수 규칙·값 객체 |
+| `src/application/` | 유스케이스 (`seo/`, `dev/`, `images/`, `plugins/`, `dashboard/` …) |
+| `src/core/`, `src/cli/` | Adapter / 오케스트레이션 (점진 정리) |
+| `tests/unit/` | Domain·순수 함수 |
+| `tests/integration/` | fixture 볼트 → `runBuild` |
+
+파이프라인 개요: CLI → scan/parse → taxonomy/backlinks → generators → (opt images/plugins) → `dist/`.

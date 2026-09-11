@@ -1,0 +1,36 @@
+---
+description: Geulte 작업 컨벤션 — Git, TDD, 공개/비공개 문서, 소통
+alwaysApply: true
+---
+
+# Geulte conventions
+
+자세한 맥락: `notes/conventions.md`
+
+## Git
+
+- `notes/`는 커밋하지 않는다 (gitignore).
+- 커밋·푸시는 사용자가 요청할 때만.
+- 시크릿·`.env`·개인 절대 경로 커밋 금지.
+- 메시지 접두: `feat:` / `fix:` / `refactor:` / `docs:` / `chore:` (레포 스타일이 있으면 우선).
+
+## 코드
+
+- Node >= 20, ESM (`"type": "module"`).
+- 빌드: `tsup` → `dist/` (gitignore).
+- CLI: `src/cli/index.ts` → bin `geulte`.
+- `templates/` = 사용자 사이트 스캐폴드. 프레임워크 `src/`와 섞지 말 것.
+- `test-blog/`는 로컬 실험용 (gitignore).
+
+## 개발 방식
+
+- **TDD**: Red → Green → Refactor. 실패 테스트부터.
+- **클린 아키텍처**: Domain ← Application ← Adapters (바깥이 안쪽을 의존).
+- 게이트: `npm test` ∧ `npm run typecheck`.
+
+## 문서 · AI
+
+- 한국어로 소통. 불필요한 스코프 확대 지양.
+- 공개 정책·기능 문구 → `README.md` + `README.en.md` (+ `docs/CHANGELOG.md`).
+- 부채·가설·장애 → `notes/`만. 공개 이슈에 취약점 PoC 상세 금지.
+- 예상 밖 실패를 고치면 `notes/errors/YYYY-MM-DD-<슬러그>.md` (가설·기각 시도 포함).
